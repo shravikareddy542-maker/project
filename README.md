@@ -33,23 +33,39 @@ Designed for smart reception, event management, and secure access, Leo can detec
 
 ```text
 project/
-├── gui_app/
-│   ├── app.py                  # Main Entry Point (PyQt6 Application)
-│   └── test_pipeline.py        # Smoke tests for vision pipeline
-│
 ├── face detection/
-│   └── leo_face/
-│       ├── config.py           # Global settings (Thresholds, Paths, ONNX configs)
-│       ├── detection/          # MediaPipe Face Detector implementation
-│       ├── tracking/           # DeepSORT Tracker implementation
-│       ├── recognition/        # ArcFace ONNX Model & FAISS Matcher wrapper
-│       ├── db/                 # SQLite database adapter (guest_db.py)
-│       └── utils/              # Image Ops, Track Voting, Greeter, Welcome Generator
+│   ├── leo_face/
+│   ├── vision_face_recog.../
+│   └── walkthrough.md
 │
-├── models/                     # Placeholder for ONNX weights (w600k_r50.onnx)
+├── gui_app/
+│   ├── __pycache__/
+│   ├── app.py
+│   └── requirements.txt
+│
+├── merge/
+│   ├── __pycache__/
+│   └── main.cpython-3...
+│
+├── env/
+│   ├── Include/
+│   ├── Lib/
+│   ├── Scripts/
+│   ├── .gitignore
+│   └── pyvenv.cfg
+│
+├── venv/
+│   ├── Include/
+│   ├── Lib/
+│   ├── Scripts/
+│   ├── .gitignore
+│   └── pyvenv.cfg
+│
+├── main.py
+├── requirements.txt
+├── .gitattributes
+├── .gitignore
 └── README.md
-```
-
 ---
 
 ## 🚀 Installation & Setup
@@ -98,10 +114,4 @@ python app.py
 
 ---
 
-## 🛠️ Troubleshooting
 
-**Issue:** `ArcFace model not loaded (onnxruntime may not be installed)`  
-**Solution:** This is a common C++ DLL initialization conflict on Windows environments when GUI libraries load before ONNX Runtime. In `app.py`, `onnxruntime` is explicitly pre-loaded at line 28 to fix this. If it persists, ensure you have the *Microsoft Visual C++ Redistributable* installed.
-
-**Issue:** `FAISS index unavailable`  
-**Solution:** Ensure `faiss-cpu` is correctly installed. You can click the **⚡ Rebuild Index** button in the dashboard's Control panel to force a regeneration from SQLite.
