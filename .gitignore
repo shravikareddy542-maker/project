@@ -1,6 +1,4 @@
 .venv/
-venv/
 __pycache__/
 *.pyc
-*.onnx
-models/
+*.log
